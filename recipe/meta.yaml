@@ -11,20 +11,23 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3
+    - python {{ python_min }}
     - pip
     - pytest-runner
+    - setuptools
   run:
-    - python >=3
+    - python >={{ python_min }}
     - numpy
     - scipy
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - thechopper
 
